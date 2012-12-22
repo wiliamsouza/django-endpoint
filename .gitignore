@@ -1,0 +1,6 @@
+bin/
+lib/
+.tox/
+*.pyc
+include/
+__pycache__
