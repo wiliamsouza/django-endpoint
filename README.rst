@@ -16,11 +16,17 @@ Commands used to create this project::
     $ touch tox.ini
     $ git add tox.ini
     $ git commit -m "Added tox.ini"
-    $ echo 'https://www.djangoproject.com/download/1.5b2/tarball/' > requiments.tst
+    $ echo 'https://www.djangoproject.com/download/1.5b2/tarball/' > requirements.tst
+    $ git add requirements.txt
+    $ git commit -m "Added requirements.txt"
     $ pip -r install requirements.txt
     $ echo 'tox' > test-requirements.txt
+    $ git add test-requirements.txt
+    $ git commit -m "Added test-requirements.txt"
     $ pip -r install test-requirements.txt
     $ touch .gitignore
+    $ git add .gitignore
+    $ git commit -m "Added .gitignore"
     $ django-admin.py startproject django_endpoint
     $ git add django_endpoint/
     $ git commit -m "Created initial django project"
