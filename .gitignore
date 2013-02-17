@@ -1,6 +1,10 @@
 bin/
 lib/
+man/
 .tox/
 *.pyc
 include/
 __pycache__
+.django-endpoint.sublime-project
+.django-endpoint.sublime-workspace
+django_endpoint/django_endpoint/development_settings.py

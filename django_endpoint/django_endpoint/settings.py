@@ -1,5 +1,8 @@
 # Django settings for django_endpoint project.
 
+from __future__ import print_function
+
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -116,6 +119,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_nose',
+    'console'
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -150,3 +155,9 @@ LOGGING = {
         },
     }
 }
+
+
+try:
+    from .development_settings import *
+except ImportError as error:
+    print('Unable to load developmet_settings.py:', error)
