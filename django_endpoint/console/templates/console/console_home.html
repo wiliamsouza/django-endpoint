@@ -1,0 +1,8 @@
+<h2>API access</h2>
+{% for client_id in object_list %}
+<ul>
+    <li>{{ client_id.client_id }}</li>
+    <li>{{ client_id.uri }}</li>
+    <li>{{ client_id.redirect_uri }}</li>
+</ul>
+{% endfor %}
