@@ -1,16 +1,24 @@
+from __future__ import absolute_import, unicode_literals
+
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class BrandingInformation(models.Model):
-    user = models.ForeignKey(User)
-    name = models.CharField(max_length=255)
-    logo = models.CharField(max_length=255)  # Max size 120x60 pixels
-    home_page_url = models.CharField(max_length=255)
+    account = models.OneToOneField(settings.AUTH_USER_MODEL)
+    product_name = models.CharField(max_length=255)
+    product_logo = models.URLField()
+    home_page_url = models.URLField()
+
+    def __str__(self):
+        return self.product_name
 
 
-class ClientID(models.Model):
+@python_2_unicode_compatible
+class ClientIdentifier(models.Model):
 
     SERVICE_ACCOUNT = 'S'
     WEB_APP = 'W'
@@ -53,3 +61,6 @@ class ClientID(models.Model):
     # iOS
     bundle_id = models.CharField(max_length=255)
     app_store_id = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.client_id

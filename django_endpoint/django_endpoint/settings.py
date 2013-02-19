@@ -1,7 +1,13 @@
 # Django settings for django_endpoint project.
 
-from __future__ import print_function
+from __future__ import absolute_import, unicode_literals
 
+import os
+import sys
+
+ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if ROOT_PATH not in sys.path:
+        sys.path.append(ROOT_PATH)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -107,6 +113,7 @@ ROOT_URLCONF = 'django_endpoint.urls'
 WSGI_APPLICATION = 'django_endpoint.wsgi.application'
 
 TEMPLATE_DIRS = (
+    os.path.join(ROOT_PATH, 'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -119,7 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_nose',
+    #'django_nose',
     'console'
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',

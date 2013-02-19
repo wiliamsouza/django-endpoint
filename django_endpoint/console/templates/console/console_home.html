@@ -1,8 +1,29 @@
-<h2>API access</h2>
-{% for client_id in object_list %}
+<h2>Branding Information</h2>
+Product name: {{ branding_information.product_name }}</br>
+Account: {{ branding_information.account }}
+Product logo: {{ branding_information.product_logo }}</br>
+Home page URL: {{ branding_information.home_page_url }}</br>
+<a href="{% url 'branding_information_add' %}">Edit</a>
+<form method="post" action="{% url 'branding_information_add' %}">
+{% csrf_token %}
 <ul>
-    <li>{{ client_id.client_id }}</li>
-    <li>{{ client_id.uri }}</li>
-    <li>{{ client_id.redirect_uri }}</li>
+{{ branding_information_form.as_ul }}
+</ul>
+<input type="submit" value="Update" />
+</form>
+<h2>API access</h2>
+<a href="{% url 'client_identifier_add' %}">Add</a>
+<form method="post" action="{% url 'client_identifier_add' %}">
+{% csrf_token %}
+<ul>
+{{ client_identifier_form.as_ul }}
+</ul>
+<input type="submit" value="Add" />
+</form>
+{% for client_identifier in object_list %}
+<ul>
+    <li>{{ client_identifier.client_id }}</li>
+    <li>{{ client_identifier.uri }}</li>
+    <li>{{ client_identifier.redirect_uri }}</li>
 </ul>
 {% endfor %}
