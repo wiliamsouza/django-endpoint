@@ -1,25 +1,39 @@
 <h2>Branding Information</h2>
+
 Product name: {{ branding_information.product_name }}</br>
-Account: {{ branding_information.account }}
-Product logo: {{ branding_information.product_logo }}</br>
+Account: {{ branding_information.account }}</br>
+Product logo: <img class="img-polaroid" src="{{ branding_information.product_logo }}"></br>
 Home page URL: {{ branding_information.home_page_url }}</br>
-<a href="{% url 'branding_information_add' %}">Edit</a>
-<form method="post" action="{% url 'branding_information_add' %}">
+
+<a class="btn" href="#showbrandinginfoform">Edit</a>
+
+<div class="hide">
+<form method="post" action="{% url 'branding_information_update' branding_information.id %}">
+<fieldset>
 {% csrf_token %}
 <ul>
 {{ branding_information_form.as_ul }}
 </ul>
-<input type="submit" value="Update" />
+<button type="submit" class="btn btn-inverse">Update</button>
+</fieldset>
 </form>
+</div> <!-- hide -->
+
 <h2>API access</h2>
-<a href="{% url 'client_identifier_add' %}">Add</a>
+<a class="btn" href="#showclientidform">Add</a>
+
+<div class="hide">
 <form method="post" action="{% url 'client_identifier_add' %}">
+<fieldset>
 {% csrf_token %}
 <ul>
 {{ client_identifier_form.as_ul }}
 </ul>
-<input type="submit" value="Add" />
+<button type="submit" class="btn btn-inverse">Add</button>
+</fieldset>
 </form>
+</div> <!-- hide -->
+
 {% for client_identifier in object_list %}
 <ul>
     <li>{{ client_identifier.client_id }}</li>

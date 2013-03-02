@@ -14,21 +14,15 @@ class ConsoleHomeList(LoginRequiredMixin, ListView):
     model = ClientIdentifier
 
     def get_context_data(self, **kwargs):
-        branding_information = None
         context = super(ConsoleHomeList, self).get_context_data(**kwargs)
-        try:
-            branding_information = self.request.user.brandinginformation
-        except BrandingInformation.DoesNotExist:
-            branding_information = None
-        context['branding_information'] = branding_information
-        context['branding_information_form'] = BrandingInformationForm()
-        context['client_identifier_form'] = ClientIdentifierForm()
+        user = self.request.user
+        branding_info, created = BrandingInformation.objects.get_or_create(
+            account=user)
+        branding_form = BrandingInformationForm(instance=branding_info)
+        context['branding_information'] = branding_info
+        context['branding_information_form'] = branding_form
+        context['client_identifier_form'] = ClientIdentifierForm(branding_info)
         return context
-
-
-class BrandingInformationCreate(LoginRequiredMixin, CreateView):
-    model = BrandingInformation
-    success_url = reverse_lazy('console_home')
 
 
 class BrandingInformationUpdate(LoginRequiredMixin, UpdateView):

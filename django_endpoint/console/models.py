@@ -9,9 +9,9 @@ from django.utils.encoding import python_2_unicode_compatible
 @python_2_unicode_compatible
 class BrandingInformation(models.Model):
     account = models.OneToOneField(settings.AUTH_USER_MODEL)
-    product_name = models.CharField(max_length=255)
-    product_logo = models.URLField()
-    home_page_url = models.URLField()
+    product_name = models.CharField(max_length=255, blank=True)
+    product_logo = models.URLField(blank=True)
+    home_page_url = models.URLField(blank=True)
 
     def __str__(self):
         return self.product_name
